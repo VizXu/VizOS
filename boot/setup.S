@@ -1,5 +1,5 @@
 !
-!	setup.s		(C) 1991 Linus Torvalds
+!	setup.s		(C) 2019 VizXu
 !
 ! setup.s is responsible for getting the system data from the BIOS,
 ! and putting them into the appropriate places in system memory.

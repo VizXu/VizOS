@@ -6,7 +6,7 @@
 #include <viz/config.h>
 SYSSIZE = DEF_SYSSIZE
 !
-!	bootsect.s		(C) 1991 Linus Torvalds
+!	bootsect.s		(C) 2019 VizXu
 !	modified by Drew Eckhardt
 !
 ! bootsect.s is loaded at 0x7c00 by the bios-startup routines, and moves

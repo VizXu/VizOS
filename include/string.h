@@ -21,7 +21,7 @@ extern char * strerror(int errno);
  * set, making the functions fast and clean. String instructions have been
  * used through-out, making for "slightly" unclear code :-)
  *
- *		(C) 1991 Linus Torvalds
+ *		(C) 2019 VizXu
  */
  
 extern inline char * strcpy(char * dest,const char *src)

@@ -1,7 +1,7 @@
 /*
  * viz/include/viz/math_emu.h
  *
- * (C) 1991 Linus Torvalds
+ * (C) 2019 VizXu
  */
 #ifndef _LINUX_MATH_EMU_H
 #define _LINUX_MATH_EMU_H
