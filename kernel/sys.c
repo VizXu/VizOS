@@ -1,15 +1,15 @@
 /*
- *  linux/kernel/sys.c
+ *  viz/kernel/sys.c
  *
  *  (C) 1991  Linus Torvalds
  */
 
 #include <errno.h>
 
-#include <linux/sched.h>
-#include <linux/tty.h>
-#include <linux/kernel.h>
-#include <linux/config.h>
+#include <viz/sched.h>
+#include <viz/tty.h>
+#include <viz/kernel.h>
+#include <viz/config.h>
 #include <asm/segment.h>
 #include <sys/times.h>
 #include <sys/utsname.h>

@@ -1,5 +1,5 @@
 /*
- *  linux/lib/string.c
+ *  viz/lib/string.c
  *
  *  (C) 1991  Linus Torvalds
  */

@@ -1,5 +1,5 @@
 /*
- * linux/kernel/math/add.c
+ * viz/kernel/math/add.c
  *
  * (C) 1991 Linus Torvalds
  */
@@ -17,7 +17,7 @@
  * 61-bit accuracy never shows at all.
  */
 
-#include <linux/math_emu.h>
+#include <viz/math_emu.h>
 
 #define NEGINT(a) \
 __asm__("notl %0 ; notl %1 ; addl $1,%0 ; adcl $0,%1" \

@@ -1,5 +1,5 @@
 /*
- *  linux/lib/close.c
+ *  viz/lib/close.c
  *
  *  (C) 1991  Linus Torvalds
  */

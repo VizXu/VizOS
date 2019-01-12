@@ -1,5 +1,5 @@
 /*
- *  linux/fs/super.c
+ *  viz/fs/super.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -7,9 +7,9 @@
 /*
  * super.c contains code to handle the super-block tables.
  */
-#include <linux/config.h>
-#include <linux/sched.h>
-#include <linux/kernel.h>
+#include <viz/config.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
 #include <asm/system.h>
 
 #include <errno.h>

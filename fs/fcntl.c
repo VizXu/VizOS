@@ -1,13 +1,13 @@
 /*
- *  linux/fs/fcntl.c
+ *  viz/fs/fcntl.c
  *
  *  (C) 1991  Linus Torvalds
  */
 
 #include <string.h>
 #include <errno.h>
-#include <linux/sched.h>
-#include <linux/kernel.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
 #include <asm/segment.h>
 
 #include <fcntl.h>

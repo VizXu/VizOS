@@ -1,5 +1,5 @@
 /*
- *  linux/lib/write.c
+ *  viz/lib/write.c
  *
  *  (C) 1991  Linus Torvalds
  */

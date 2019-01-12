@@ -1,5 +1,5 @@
 /*
- * linux/kernel/math/math_emulate.c
+ * viz/kernel/math/math_emulate.c
  *
  * (C) 1991 Linus Torvalds
  */
@@ -33,8 +33,8 @@
 #include <signal.h>
 
 #define __ALIGNED_TEMP_REAL 1
-#include <linux/math_emu.h>
-#include <linux/kernel.h>
+#include <viz/math_emu.h>
+#include <viz/kernel.h>
 #include <asm/segment.h>
 
 #define bswapw(x) __asm__("xchgb %%al,%%ah":"=a" (x):"0" ((short)x))

@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/tty_io.c
+ *  viz/kernel/tty_io.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -18,8 +18,8 @@
 
 #define ALRMMASK (1<<(SIGALRM-1))
 
-#include <linux/sched.h>
-#include <linux/tty.h>
+#include <viz/sched.h>
+#include <viz/tty.h>
 #include <asm/segment.h>
 #include <asm/system.h>
 

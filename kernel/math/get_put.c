@@ -1,5 +1,5 @@
 /*
- * linux/kernel/math/get_put.c
+ * viz/kernel/math/get_put.c
  *
  * (C) 1991 Linus Torvalds
  */
@@ -11,8 +11,8 @@
  */
 #include <signal.h>
 
-#include <linux/math_emu.h>
-#include <linux/kernel.h>
+#include <viz/math_emu.h>
+#include <viz/kernel.h>
 #include <asm/segment.h>
 
 void get_short_real(temp_real * tmp,

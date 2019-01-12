@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/serial.c
+ *  viz/kernel/serial.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -13,8 +13,8 @@
  * and all interrupts pertaining to serial IO.
  */
 
-#include <linux/tty.h>
-#include <linux/sched.h>
+#include <viz/tty.h>
+#include <viz/sched.h>
 #include <asm/system.h>
 #include <asm/io.h>
 

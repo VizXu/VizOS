@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/system_call.s
+ *  viz/kernel/system_call.s
  *
  *  (C) 1991  Linus Torvalds
  */

@@ -1,5 +1,5 @@
 /*
- *  linux/fs/stat.c
+ *  viz/fs/stat.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -7,9 +7,9 @@
 #include <errno.h>
 #include <sys/stat.h>
 
-#include <linux/fs.h>
-#include <linux/sched.h>
-#include <linux/kernel.h>
+#include <viz/fs.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
 #include <asm/segment.h>
 
 static void cp_stat(struct m_inode * inode, struct stat * statbuf)

@@ -1,5 +1,5 @@
 /*
- *  linux/init/main.c
+ *  viz/init/main.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -25,9 +25,9 @@ static inline _syscall0(int,pause)
 static inline _syscall1(int,setup,void *,BIOS)
 static inline _syscall0(int,sync)
 
-#include <linux/tty.h>
-#include <linux/sched.h>
-#include <linux/head.h>
+#include <viz/tty.h>
+#include <viz/sched.h>
+#include <viz/head.h>
 #include <asm/system.h>
 #include <asm/io.h>
 
@@ -37,7 +37,7 @@ static inline _syscall0(int,sync)
 #include <fcntl.h>
 #include <sys/types.h>
 
-#include <linux/fs.h>
+#include <viz/fs.h>
 
 #include <string.h>
 

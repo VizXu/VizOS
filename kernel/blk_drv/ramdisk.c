@@ -1,15 +1,15 @@
 /*
- *  linux/kernel/blk_drv/ramdisk.c
+ *  viz/kernel/blk_drv/ramdisk.c
  *
  *  Written by Theodore Ts'o, 12/2/91
  */
 
 #include <string.h>
 
-#include <linux/config.h>
-#include <linux/sched.h>
-#include <linux/fs.h>
-#include <linux/kernel.h>
+#include <viz/config.h>
+#include <viz/sched.h>
+#include <viz/fs.h>
+#include <viz/kernel.h>
 #include <asm/system.h>
 #include <asm/segment.h>
 #include <asm/memory.h>

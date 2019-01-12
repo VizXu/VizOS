@@ -89,10 +89,10 @@ boot/setup: boot/setup.s
 	$(AS86) -o boot/setup.o boot/setup.s
 	$(LD86) -s -o boot/setup boot/setup.o
 
-boot/setup.s:	boot/setup.S include/linux/config.h
+boot/setup.s:	boot/setup.S include/viz/config.h
 	$(CPP) -traditional boot/setup.S -o boot/setup.s
 
-boot/bootsect.s:	boot/bootsect.S include/linux/config.h
+boot/bootsect.s:	boot/bootsect.S include/viz/config.h
 	$(CPP) -traditional boot/bootsect.S -o boot/bootsect.s
 
 boot/bootsect:	boot/bootsect.s
@@ -109,7 +109,7 @@ clean:
 	(cd lib;make clean)
 
 backup: clean
-	(cd .. ; tar cf - linux | compress - > backup.Z)
+	(cd .. ; tar cf - viz | compress - > backup.Z)
 	sync
 
 dep:
@@ -124,8 +124,8 @@ dep:
 init/main.o : init/main.c include/unistd.h include/sys/stat.h \
   include/sys/types.h include/sys/time.h include/time.h include/sys/times.h \
   include/sys/utsname.h include/sys/param.h include/sys/resource.h \
-  include/utime.h include/linux/tty.h include/termios.h include/linux/sched.h \
-  include/linux/head.h include/linux/fs.h include/linux/mm.h \
-  include/linux/kernel.h include/signal.h include/asm/system.h \
+  include/utime.h include/viz/tty.h include/termios.h include/viz/sched.h \
+  include/viz/head.h include/viz/fs.h include/viz/mm.h \
+  include/viz/kernel.h include/signal.h include/asm/system.h \
   include/asm/io.h include/stddef.h include/stdarg.h include/fcntl.h \
   include/string.h 

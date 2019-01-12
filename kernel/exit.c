@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/exit.c
+ *  viz/kernel/exit.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -10,9 +10,9 @@
 #include <signal.h>
 #include <sys/wait.h>
 
-#include <linux/sched.h>
-#include <linux/kernel.h>
-#include <linux/tty.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
+#include <viz/tty.h>
 #include <asm/segment.h>
 
 int sys_pause(void);

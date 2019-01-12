@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/panic.c
+ *  viz/kernel/panic.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -8,8 +8,8 @@
  * This function is used through-out the kernel (includeinh mm and fs)
  * to indicate a major problem.
  */
-#include <linux/kernel.h>
-#include <linux/sched.h>
+#include <viz/kernel.h>
+#include <viz/sched.h>
 
 void sys_sync(void);	/* it's really int */
 

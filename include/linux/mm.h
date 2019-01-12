@@ -3,7 +3,7 @@
 
 #define PAGE_SIZE 4096
 
-#include <linux/kernel.h>
+#include <viz/kernel.h>
 #include <signal.h>
 
 extern int SWAP_DEV;

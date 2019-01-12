@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/console.c
+ *  viz/kernel/console.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -30,10 +30,10 @@
  * <g-hunt@ee.utah.edu>
  */
 
-#include <linux/sched.h>
-#include <linux/tty.h>
-#include <linux/config.h>
-#include <linux/kernel.h>
+#include <viz/sched.h>
+#include <viz/tty.h>
+#include <viz/config.h>
+#include <viz/kernel.h>
 
 #include <asm/io.h>
 #include <asm/system.h>

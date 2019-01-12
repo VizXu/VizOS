@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/blk_dev/ll_rw.c
+ *  viz/kernel/blk_dev/ll_rw.c
  *
  * (C) 1991 Linus Torvalds
  */
@@ -8,8 +8,8 @@
  * This handles all read/write requests to block devices
  */
 #include <errno.h>
-#include <linux/sched.h>
-#include <linux/kernel.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
 #include <asm/system.h>
 
 #include "blk.h"

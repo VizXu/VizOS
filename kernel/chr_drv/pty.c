@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/chr_drv/pty.c
+ *  viz/kernel/chr_drv/pty.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -12,8 +12,8 @@
  *	void spty_write(struct tty_struct * queue);
  */
 
-#include <linux/tty.h>
-#include <linux/sched.h>
+#include <viz/tty.h>
+#include <viz/sched.h>
 #include <asm/system.h>
 #include <asm/io.h>
 

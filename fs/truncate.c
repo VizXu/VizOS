@@ -1,10 +1,10 @@
 /*
- *  linux/fs/truncate.c
+ *  viz/fs/truncate.c
  *
  *  (C) 1991  Linus Torvalds
  */
 
-#include <linux/sched.h>
+#include <viz/sched.h>
 
 #include <sys/stat.h>
 

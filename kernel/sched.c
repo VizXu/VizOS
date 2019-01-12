@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/sched.c
+ *  viz/kernel/sched.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -10,10 +10,10 @@
  * call functions (type getpid(), which just extracts a field from
  * current-task
  */
-#include <linux/sched.h>
-#include <linux/kernel.h>
-#include <linux/sys.h>
-#include <linux/fdreg.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
+#include <viz/sys.h>
+#include <viz/fdreg.h>
 #include <asm/system.h>
 #include <asm/io.h>
 #include <asm/segment.h>

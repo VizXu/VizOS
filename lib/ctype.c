@@ -1,5 +1,5 @@
 /*
- *  linux/lib/ctype.c
+ *  viz/lib/ctype.c
  *
  *  (C) 1991  Linus Torvalds
  */

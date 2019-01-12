@@ -1,5 +1,5 @@
 /*
- *  linux/fs/buffer.c
+ *  viz/fs/buffer.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -20,9 +20,9 @@
 
 #include <stdarg.h>
  
-#include <linux/config.h>
-#include <linux/sched.h>
-#include <linux/kernel.h>
+#include <viz/config.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
 #include <asm/system.h>
 #include <asm/io.h>
 

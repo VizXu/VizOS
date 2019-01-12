@@ -1,5 +1,5 @@
 /*
- *  linux/lib/dup.c
+ *  viz/lib/dup.c
  *
  *  (C) 1991  Linus Torvalds
  */

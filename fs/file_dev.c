@@ -1,5 +1,5 @@
 /*
- *  linux/fs/file_dev.c
+ *  viz/fs/file_dev.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -7,8 +7,8 @@
 #include <errno.h>
 #include <fcntl.h>
 
-#include <linux/sched.h>
-#include <linux/kernel.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
 #include <asm/segment.h>
 
 #define MIN(a,b) (((a)<(b))?(a):(b))

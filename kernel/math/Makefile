@@ -42,42 +42,42 @@ dep:
 	cp tmp_make Makefile
 
 ### Dependencies:
-add.s add.o : add.c ../../include/linux/math_emu.h ../../include/linux/sched.h \
-  ../../include/linux/head.h ../../include/linux/fs.h \
-  ../../include/sys/types.h ../../include/linux/mm.h \
-  ../../include/linux/kernel.h ../../include/signal.h 
-compare.s compare.o : compare.c ../../include/linux/math_emu.h \
-  ../../include/linux/sched.h ../../include/linux/head.h \
-  ../../include/linux/fs.h ../../include/sys/types.h ../../include/linux/mm.h \
-  ../../include/linux/kernel.h ../../include/signal.h 
-convert.s convert.o : convert.c ../../include/linux/math_emu.h \
-  ../../include/linux/sched.h ../../include/linux/head.h \
-  ../../include/linux/fs.h ../../include/sys/types.h ../../include/linux/mm.h \
-  ../../include/linux/kernel.h ../../include/signal.h 
-div.s div.o : div.c ../../include/linux/math_emu.h ../../include/linux/sched.h \
-  ../../include/linux/head.h ../../include/linux/fs.h \
-  ../../include/sys/types.h ../../include/linux/mm.h \
-  ../../include/linux/kernel.h ../../include/signal.h 
-ea.s ea.o : ea.c ../../include/stddef.h ../../include/linux/math_emu.h \
-  ../../include/linux/sched.h ../../include/linux/head.h \
-  ../../include/linux/fs.h ../../include/sys/types.h ../../include/linux/mm.h \
-  ../../include/linux/kernel.h ../../include/signal.h \
+add.s add.o : add.c ../../include/viz/math_emu.h ../../include/viz/sched.h \
+  ../../include/viz/head.h ../../include/viz/fs.h \
+  ../../include/sys/types.h ../../include/viz/mm.h \
+  ../../include/viz/kernel.h ../../include/signal.h 
+compare.s compare.o : compare.c ../../include/viz/math_emu.h \
+  ../../include/viz/sched.h ../../include/viz/head.h \
+  ../../include/viz/fs.h ../../include/sys/types.h ../../include/viz/mm.h \
+  ../../include/viz/kernel.h ../../include/signal.h 
+convert.s convert.o : convert.c ../../include/viz/math_emu.h \
+  ../../include/viz/sched.h ../../include/viz/head.h \
+  ../../include/viz/fs.h ../../include/sys/types.h ../../include/viz/mm.h \
+  ../../include/viz/kernel.h ../../include/signal.h 
+div.s div.o : div.c ../../include/viz/math_emu.h ../../include/viz/sched.h \
+  ../../include/viz/head.h ../../include/viz/fs.h \
+  ../../include/sys/types.h ../../include/viz/mm.h \
+  ../../include/viz/kernel.h ../../include/signal.h 
+ea.s ea.o : ea.c ../../include/stddef.h ../../include/viz/math_emu.h \
+  ../../include/viz/sched.h ../../include/viz/head.h \
+  ../../include/viz/fs.h ../../include/sys/types.h ../../include/viz/mm.h \
+  ../../include/viz/kernel.h ../../include/signal.h \
   ../../include/asm/segment.h 
 error.s error.o : error.c ../../include/signal.h ../../include/sys/types.h \
-  ../../include/linux/sched.h ../../include/linux/head.h \
-  ../../include/linux/fs.h ../../include/linux/mm.h \
-  ../../include/linux/kernel.h 
+  ../../include/viz/sched.h ../../include/viz/head.h \
+  ../../include/viz/fs.h ../../include/viz/mm.h \
+  ../../include/viz/kernel.h 
 get_put.s get_put.o : get_put.c ../../include/signal.h ../../include/sys/types.h \
-  ../../include/linux/math_emu.h ../../include/linux/sched.h \
-  ../../include/linux/head.h ../../include/linux/fs.h \
-  ../../include/linux/mm.h ../../include/linux/kernel.h \
+  ../../include/viz/math_emu.h ../../include/viz/sched.h \
+  ../../include/viz/head.h ../../include/viz/fs.h \
+  ../../include/viz/mm.h ../../include/viz/kernel.h \
   ../../include/asm/segment.h 
 math_emulate.s math_emulate.o : math_emulate.c ../../include/signal.h \
-  ../../include/sys/types.h ../../include/linux/math_emu.h \
-  ../../include/linux/sched.h ../../include/linux/head.h \
-  ../../include/linux/fs.h ../../include/linux/mm.h \
-  ../../include/linux/kernel.h ../../include/asm/segment.h 
-mul.s mul.o : mul.c ../../include/linux/math_emu.h ../../include/linux/sched.h \
-  ../../include/linux/head.h ../../include/linux/fs.h \
-  ../../include/sys/types.h ../../include/linux/mm.h \
-  ../../include/linux/kernel.h ../../include/signal.h 
+  ../../include/sys/types.h ../../include/viz/math_emu.h \
+  ../../include/viz/sched.h ../../include/viz/head.h \
+  ../../include/viz/fs.h ../../include/viz/mm.h \
+  ../../include/viz/kernel.h ../../include/asm/segment.h 
+mul.s mul.o : mul.c ../../include/viz/math_emu.h ../../include/viz/sched.h \
+  ../../include/viz/head.h ../../include/viz/fs.h \
+  ../../include/sys/types.h ../../include/viz/mm.h \
+  ../../include/viz/kernel.h ../../include/signal.h 

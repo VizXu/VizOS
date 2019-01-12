@@ -1,5 +1,5 @@
 /*
- *  linux/fs/ioctl.c
+ *  viz/fs/ioctl.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -8,7 +8,7 @@
 #include <errno.h>
 #include <sys/stat.h>
 
-#include <linux/sched.h>
+#include <viz/sched.h>
 
 extern int tty_ioctl(int dev, int cmd, int arg);
 extern int pipe_ioctl(struct m_inode *pino, int cmd, int arg);

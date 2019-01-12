@@ -1,5 +1,5 @@
 /*
- *  linux/lib/errno.c
+ *  viz/lib/errno.c
  *
  *  (C) 1991  Linus Torvalds
  */

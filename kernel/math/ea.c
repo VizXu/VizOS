@@ -1,5 +1,5 @@
 /*
- * linux/kernel/math/ea.c
+ * viz/kernel/math/ea.c
  *
  * (C) 1991 Linus Torvalds
  */
@@ -10,7 +10,7 @@
 
 #include <stddef.h>
 
-#include <linux/math_emu.h>
+#include <viz/math_emu.h>
 #include <asm/segment.h>
 
 static int __regoffset[] = {

@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/mktime.c
+ *  viz/kernel/mktime.c
  *
  *  (C) 1991  Linus Torvalds
  */

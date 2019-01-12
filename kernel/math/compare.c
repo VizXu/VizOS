@@ -1,5 +1,5 @@
 /*
- * linux/kernel/math/compare.c
+ * viz/kernel/math/compare.c
  *
  * (C) 1991 Linus Torvalds
  */
@@ -8,7 +8,7 @@
  * temporary real comparison routines
  */
 
-#include <linux/math_emu.h>
+#include <viz/math_emu.h>
 
 #define clear_Cx() (I387.swd &= ~0x4500)
 

@@ -1,5 +1,5 @@
 /*
- *  linux/tools/build.c
+ *  viz/tools/build.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -27,7 +27,7 @@
 #include <stdlib.h>	/* contains exit */
 #include <sys/types.h>	/* unistd.h needs this */
 #include <sys/stat.h>
-#include <linux/fs.h>
+#include <viz/fs.h>
 #include <unistd.h>	/* contains read/write */
 #include <fcntl.h>
 

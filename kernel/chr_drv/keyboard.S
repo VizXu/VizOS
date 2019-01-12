@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/keyboard.S
+ *  viz/kernel/keyboard.S
  *
  *  (C) 1991  Linus Torvalds
  */

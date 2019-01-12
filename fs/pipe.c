@@ -1,5 +1,5 @@
 /*
- *  linux/fs/pipe.c
+ *  viz/fs/pipe.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -8,10 +8,10 @@
 #include <errno.h>
 #include <termios.h>
 
-#include <linux/sched.h>
-#include <linux/mm.h>	/* for get_free_page */
+#include <viz/sched.h>
+#include <viz/mm.h>	/* for get_free_page */
 #include <asm/segment.h>
-#include <linux/kernel.h>
+#include <viz/kernel.h>
 
 int read_pipe(struct m_inode * inode, char * buf, int count)
 {

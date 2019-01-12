@@ -1,5 +1,5 @@
 /*
- * linux/kernel/math/div.c
+ * viz/kernel/math/div.c
  *
  * (C) 1991 Linus Torvalds
  */
@@ -8,7 +8,7 @@
  * temporary real division routine.
  */
 
-#include <linux/math_emu.h>
+#include <viz/math_emu.h>
 
 static void shift_left(int * c)
 {

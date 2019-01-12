@@ -1,5 +1,5 @@
 /*
- * linux/kernel/math/mul.c
+ * viz/kernel/math/mul.c
  *
  * (C) 1991 Linus Torvalds
  */
@@ -8,7 +8,7 @@
  * temporary real multiplication routine.
  */
 
-#include <linux/math_emu.h>
+#include <viz/math_emu.h>
 
 static void shift(int * c)
 {

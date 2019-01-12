@@ -5,10 +5,10 @@
  * patches by Peter MacDonald. Heavily edited by Linus.
  */
 
-#include <linux/fs.h>
-#include <linux/kernel.h>
-#include <linux/tty.h>
-#include <linux/sched.h>
+#include <viz/fs.h>
+#include <viz/kernel.h>
+#include <viz/tty.h>
+#include <viz/sched.h>
 
 #include <asm/segment.h>
 #include <asm/system.h>
@@ -25,7 +25,7 @@
  * Ok, Peter made a complicated, but straightforward multiple_wait() function.
  * I have rewritten this, taking some shortcuts: This code may not be easy to
  * follow, but it should be free of race-conditions, and it's practical. If you
- * understand what I'm doing here, then you understand how the linux sleep/wakeup
+ * understand what I'm doing here, then you understand how the viz sleep/wakeup
  * mechanism works.
  *
  * Two very simple procedures, add_wait() and free_wait() make all the work. We

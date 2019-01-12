@@ -1,12 +1,12 @@
 /*
- * linux/include/linux/math_emu.h
+ * viz/include/viz/math_emu.h
  *
  * (C) 1991 Linus Torvalds
  */
 #ifndef _LINUX_MATH_EMU_H
 #define _LINUX_MATH_EMU_H
 
-#include <linux/sched.h>
+#include <viz/sched.h>
 
 struct info {
 	long ___math_ret;

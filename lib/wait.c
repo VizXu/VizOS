@@ -1,5 +1,5 @@
 /*
- *  linux/lib/wait.c
+ *  viz/lib/wait.c
  *
  *  (C) 1991  Linus Torvalds
  */

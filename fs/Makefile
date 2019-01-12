@@ -32,98 +32,98 @@ dep:
 	cp tmp_make Makefile
 
 ### Dependencies:
-bitmap.o : bitmap.c ../include/string.h ../include/linux/sched.h \
-  ../include/linux/head.h ../include/linux/fs.h ../include/sys/types.h \
-  ../include/linux/mm.h ../include/linux/kernel.h ../include/signal.h \
+bitmap.o : bitmap.c ../include/string.h ../include/viz/sched.h \
+  ../include/viz/head.h ../include/viz/fs.h ../include/sys/types.h \
+  ../include/viz/mm.h ../include/viz/kernel.h ../include/signal.h \
   ../include/sys/param.h ../include/sys/time.h ../include/time.h \
   ../include/sys/resource.h 
-block_dev.o : block_dev.c ../include/errno.h ../include/linux/sched.h \
-  ../include/linux/head.h ../include/linux/fs.h ../include/sys/types.h \
-  ../include/linux/mm.h ../include/linux/kernel.h ../include/signal.h \
+block_dev.o : block_dev.c ../include/errno.h ../include/viz/sched.h \
+  ../include/viz/head.h ../include/viz/fs.h ../include/sys/types.h \
+  ../include/viz/mm.h ../include/viz/kernel.h ../include/signal.h \
   ../include/sys/param.h ../include/sys/time.h ../include/time.h \
   ../include/sys/resource.h ../include/asm/segment.h ../include/asm/system.h 
-buffer.o : buffer.c ../include/stdarg.h ../include/linux/config.h \
-  ../include/linux/sched.h ../include/linux/head.h ../include/linux/fs.h \
-  ../include/sys/types.h ../include/linux/mm.h ../include/linux/kernel.h \
+buffer.o : buffer.c ../include/stdarg.h ../include/viz/config.h \
+  ../include/viz/sched.h ../include/viz/head.h ../include/viz/fs.h \
+  ../include/sys/types.h ../include/viz/mm.h ../include/viz/kernel.h \
   ../include/signal.h ../include/sys/param.h ../include/sys/time.h \
   ../include/time.h ../include/sys/resource.h ../include/asm/system.h \
   ../include/asm/io.h 
 char_dev.o : char_dev.c ../include/errno.h ../include/sys/types.h \
-  ../include/linux/sched.h ../include/linux/head.h ../include/linux/fs.h \
-  ../include/linux/mm.h ../include/linux/kernel.h ../include/signal.h \
+  ../include/viz/sched.h ../include/viz/head.h ../include/viz/fs.h \
+  ../include/viz/mm.h ../include/viz/kernel.h ../include/signal.h \
   ../include/sys/param.h ../include/sys/time.h ../include/time.h \
   ../include/sys/resource.h ../include/asm/segment.h ../include/asm/io.h 
 exec.o : exec.c ../include/signal.h ../include/sys/types.h \
   ../include/errno.h ../include/string.h ../include/sys/stat.h \
-  ../include/a.out.h ../include/linux/fs.h ../include/linux/sched.h \
-  ../include/linux/head.h ../include/linux/mm.h ../include/linux/kernel.h \
+  ../include/a.out.h ../include/viz/fs.h ../include/viz/sched.h \
+  ../include/viz/head.h ../include/viz/mm.h ../include/viz/kernel.h \
   ../include/sys/param.h ../include/sys/time.h ../include/time.h \
   ../include/sys/resource.h ../include/asm/segment.h 
 fcntl.o : fcntl.c ../include/string.h ../include/errno.h \
-  ../include/linux/sched.h ../include/linux/head.h ../include/linux/fs.h \
-  ../include/sys/types.h ../include/linux/mm.h ../include/linux/kernel.h \
+  ../include/viz/sched.h ../include/viz/head.h ../include/viz/fs.h \
+  ../include/sys/types.h ../include/viz/mm.h ../include/viz/kernel.h \
   ../include/signal.h ../include/sys/param.h ../include/sys/time.h \
   ../include/time.h ../include/sys/resource.h ../include/asm/segment.h \
   ../include/fcntl.h ../include/sys/stat.h 
 file_dev.o : file_dev.c ../include/errno.h ../include/fcntl.h \
-  ../include/sys/types.h ../include/linux/sched.h ../include/linux/head.h \
-  ../include/linux/fs.h ../include/linux/mm.h ../include/linux/kernel.h \
+  ../include/sys/types.h ../include/viz/sched.h ../include/viz/head.h \
+  ../include/viz/fs.h ../include/viz/mm.h ../include/viz/kernel.h \
   ../include/signal.h ../include/sys/param.h ../include/sys/time.h \
   ../include/time.h ../include/sys/resource.h ../include/asm/segment.h 
-file_table.o : file_table.c ../include/linux/fs.h ../include/sys/types.h 
+file_table.o : file_table.c ../include/viz/fs.h ../include/sys/types.h 
 inode.o : inode.c ../include/string.h ../include/sys/stat.h \
-  ../include/sys/types.h ../include/linux/sched.h ../include/linux/head.h \
-  ../include/linux/fs.h ../include/linux/mm.h ../include/linux/kernel.h \
+  ../include/sys/types.h ../include/viz/sched.h ../include/viz/head.h \
+  ../include/viz/fs.h ../include/viz/mm.h ../include/viz/kernel.h \
   ../include/signal.h ../include/sys/param.h ../include/sys/time.h \
   ../include/time.h ../include/sys/resource.h ../include/asm/system.h 
 ioctl.o : ioctl.c ../include/string.h ../include/errno.h \
-  ../include/sys/stat.h ../include/sys/types.h ../include/linux/sched.h \
-  ../include/linux/head.h ../include/linux/fs.h ../include/linux/mm.h \
-  ../include/linux/kernel.h ../include/signal.h ../include/sys/param.h \
+  ../include/sys/stat.h ../include/sys/types.h ../include/viz/sched.h \
+  ../include/viz/head.h ../include/viz/fs.h ../include/viz/mm.h \
+  ../include/viz/kernel.h ../include/signal.h ../include/sys/param.h \
   ../include/sys/time.h ../include/time.h ../include/sys/resource.h 
-namei.o : namei.c ../include/linux/sched.h ../include/linux/head.h \
-  ../include/linux/fs.h ../include/sys/types.h ../include/linux/mm.h \
-  ../include/linux/kernel.h ../include/signal.h ../include/sys/param.h \
+namei.o : namei.c ../include/viz/sched.h ../include/viz/head.h \
+  ../include/viz/fs.h ../include/sys/types.h ../include/viz/mm.h \
+  ../include/viz/kernel.h ../include/signal.h ../include/sys/param.h \
   ../include/sys/time.h ../include/time.h ../include/sys/resource.h \
   ../include/asm/segment.h ../include/string.h ../include/fcntl.h \
   ../include/errno.h ../include/const.h ../include/sys/stat.h 
 open.o : open.c ../include/string.h ../include/errno.h ../include/fcntl.h \
   ../include/sys/types.h ../include/utime.h ../include/sys/stat.h \
-  ../include/linux/sched.h ../include/linux/head.h ../include/linux/fs.h \
-  ../include/linux/mm.h ../include/linux/kernel.h ../include/signal.h \
+  ../include/viz/sched.h ../include/viz/head.h ../include/viz/fs.h \
+  ../include/viz/mm.h ../include/viz/kernel.h ../include/signal.h \
   ../include/sys/param.h ../include/sys/time.h ../include/time.h \
-  ../include/sys/resource.h ../include/linux/tty.h ../include/termios.h \
+  ../include/sys/resource.h ../include/viz/tty.h ../include/termios.h \
   ../include/asm/segment.h 
 pipe.o : pipe.c ../include/signal.h ../include/sys/types.h \
-  ../include/errno.h ../include/termios.h ../include/linux/sched.h \
-  ../include/linux/head.h ../include/linux/fs.h ../include/linux/mm.h \
-  ../include/linux/kernel.h ../include/sys/param.h ../include/sys/time.h \
+  ../include/errno.h ../include/termios.h ../include/viz/sched.h \
+  ../include/viz/head.h ../include/viz/fs.h ../include/viz/mm.h \
+  ../include/viz/kernel.h ../include/sys/param.h ../include/sys/time.h \
   ../include/time.h ../include/sys/resource.h ../include/asm/segment.h 
 read_write.o : read_write.c ../include/sys/stat.h ../include/sys/types.h \
-  ../include/errno.h ../include/linux/kernel.h ../include/linux/sched.h \
-  ../include/linux/head.h ../include/linux/fs.h ../include/linux/mm.h \
+  ../include/errno.h ../include/viz/kernel.h ../include/viz/sched.h \
+  ../include/viz/head.h ../include/viz/fs.h ../include/viz/mm.h \
   ../include/signal.h ../include/sys/param.h ../include/sys/time.h \
   ../include/time.h ../include/sys/resource.h ../include/asm/segment.h 
-select.o : select.c ../include/linux/fs.h ../include/sys/types.h \
-  ../include/linux/kernel.h ../include/linux/tty.h ../include/termios.h \
-  ../include/linux/sched.h ../include/linux/head.h ../include/linux/mm.h \
+select.o : select.c ../include/viz/fs.h ../include/sys/types.h \
+  ../include/viz/kernel.h ../include/viz/tty.h ../include/termios.h \
+  ../include/viz/sched.h ../include/viz/head.h ../include/viz/mm.h \
   ../include/signal.h ../include/sys/param.h ../include/sys/time.h \
   ../include/time.h ../include/sys/resource.h ../include/asm/segment.h \
   ../include/asm/system.h ../include/sys/stat.h ../include/string.h \
   ../include/const.h ../include/errno.h 
 stat.o : stat.c ../include/errno.h ../include/sys/stat.h \
-  ../include/sys/types.h ../include/linux/fs.h ../include/linux/sched.h \
-  ../include/linux/head.h ../include/linux/mm.h ../include/linux/kernel.h \
+  ../include/sys/types.h ../include/viz/fs.h ../include/viz/sched.h \
+  ../include/viz/head.h ../include/viz/mm.h ../include/viz/kernel.h \
   ../include/signal.h ../include/sys/param.h ../include/sys/time.h \
   ../include/time.h ../include/sys/resource.h ../include/asm/segment.h 
-super.o : super.c ../include/linux/config.h ../include/linux/sched.h \
-  ../include/linux/head.h ../include/linux/fs.h ../include/sys/types.h \
-  ../include/linux/mm.h ../include/linux/kernel.h ../include/signal.h \
+super.o : super.c ../include/viz/config.h ../include/viz/sched.h \
+  ../include/viz/head.h ../include/viz/fs.h ../include/sys/types.h \
+  ../include/viz/mm.h ../include/viz/kernel.h ../include/signal.h \
   ../include/sys/param.h ../include/sys/time.h ../include/time.h \
   ../include/sys/resource.h ../include/asm/system.h ../include/errno.h \
   ../include/sys/stat.h 
-truncate.o : truncate.c ../include/linux/sched.h ../include/linux/head.h \
-  ../include/linux/fs.h ../include/sys/types.h ../include/linux/mm.h \
-  ../include/linux/kernel.h ../include/signal.h ../include/sys/param.h \
+truncate.o : truncate.c ../include/viz/sched.h ../include/viz/head.h \
+  ../include/viz/fs.h ../include/sys/types.h ../include/viz/mm.h \
+  ../include/viz/kernel.h ../include/signal.h ../include/sys/param.h \
   ../include/sys/time.h ../include/time.h ../include/sys/resource.h \
   ../include/sys/stat.h 

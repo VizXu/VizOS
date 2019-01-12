@@ -1,5 +1,5 @@
 /*
- *  linux/lib/open.c
+ *  viz/lib/open.c
  *
  *  (C) 1991  Linus Torvalds
  */

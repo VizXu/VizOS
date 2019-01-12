@@ -1,5 +1,5 @@
 /*
- *  linux/fs/read_write.c
+ *  viz/fs/read_write.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -8,8 +8,8 @@
 #include <errno.h>
 #include <sys/types.h>
 
-#include <linux/kernel.h>
-#include <linux/sched.h>
+#include <viz/kernel.h>
+#include <viz/sched.h>
 #include <asm/segment.h>
 
 extern int rw_char(int rw,int dev, char * buf, int count, off_t * pos);

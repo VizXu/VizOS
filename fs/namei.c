@@ -1,5 +1,5 @@
 /*
- *  linux/fs/namei.c
+ *  viz/fs/namei.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -8,8 +8,8 @@
  * Some corrections by tytso.
  */
 
-#include <linux/sched.h>
-#include <linux/kernel.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
 #include <asm/segment.h>
 
 #include <string.h>

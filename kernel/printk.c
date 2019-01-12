@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/printk.c
+ *  viz/kernel/printk.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -12,7 +12,7 @@
 #include <stdarg.h>
 #include <stddef.h>
 
-#include <linux/kernel.h>
+#include <viz/kernel.h>
 
 static char buf[1024];
 

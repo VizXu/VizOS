@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/vsprintf.c
+ *  viz/kernel/vsprintf.c
  *
  *  (C) 1991  Linus Torvalds
  */

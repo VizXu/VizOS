@@ -1,5 +1,5 @@
 /*
- *  linux/lib/setsid.c
+ *  viz/lib/setsid.c
  *
  *  (C) 1991  Linus Torvalds
  */

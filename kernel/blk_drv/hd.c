@@ -13,11 +13,11 @@
  *  modified by Drew Eckhardt to check nr of hd's from the CMOS.
  */
 
-#include <linux/config.h>
-#include <linux/sched.h>
-#include <linux/fs.h>
-#include <linux/kernel.h>
-#include <linux/hdreg.h>
+#include <viz/config.h>
+#include <viz/sched.h>
+#include <viz/fs.h>
+#include <viz/kernel.h>
+#include <viz/hdreg.h>
 #include <asm/system.h>
 #include <asm/io.h>
 #include <asm/segment.h>

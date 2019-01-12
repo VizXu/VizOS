@@ -1,5 +1,5 @@
 /*
- *  linux/mm/page.s
+ *  viz/mm/page.s
  *
  *  (C) 1991  Linus Torvalds
  */

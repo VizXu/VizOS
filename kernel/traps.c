@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/traps.c
+ *  viz/kernel/traps.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -12,9 +12,9 @@
  */
 #include <string.h>
 
-#include <linux/head.h>
-#include <linux/sched.h>
-#include <linux/kernel.h>
+#include <viz/head.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
 #include <asm/system.h>
 #include <asm/segment.h>
 #include <asm/io.h>

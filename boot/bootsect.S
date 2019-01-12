@@ -1,9 +1,9 @@
 !
 ! SYS_SIZE is the number of clicks (16 bytes) to be loaded.
 ! 0x3000 is 0x30000 bytes = 196kB, more than enough for current
-! versions of linux
+! versions of viz
 !
-#include <linux/config.h>
+#include <viz/config.h>
 SYSSIZE = DEF_SYSSIZE
 !
 !	bootsect.s		(C) 1991 Linus Torvalds

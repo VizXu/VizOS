@@ -1,11 +1,11 @@
 /*
- *  linux/kernel/signal.c
+ *  viz/kernel/signal.c
  *
  *  (C) 1991  Linus Torvalds
  */
 
-#include <linux/sched.h>
-#include <linux/kernel.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
 #include <asm/segment.h>
 
 #include <signal.h>

@@ -1,12 +1,12 @@
 /*
- * linux/kernel/math/error.c
+ * viz/kernel/math/error.c
  *
  * (C) 1991 Linus Torvalds
  */
 
 #include <signal.h>
 
-#include <linux/sched.h>
+#include <viz/sched.h>
 
 void math_error(void)
 {

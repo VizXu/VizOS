@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/chr_drv/tty_ioctl.c
+ *  viz/kernel/chr_drv/tty_ioctl.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -7,9 +7,9 @@
 #include <errno.h>
 #include <termios.h>
 
-#include <linux/sched.h>
-#include <linux/kernel.h>
-#include <linux/tty.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
+#include <viz/tty.h>
 
 #include <asm/io.h>
 #include <asm/segment.h>

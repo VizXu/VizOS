@@ -1,5 +1,5 @@
 /*
- *  linux/lib/execve.c
+ *  viz/lib/execve.c
  *
  *  (C) 1991  Linus Torvalds
  */

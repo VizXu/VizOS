@@ -33,12 +33,12 @@ dep:
 
 ### Dependencies:
 memory.o : memory.c ../include/signal.h ../include/sys/types.h \
-  ../include/asm/system.h ../include/linux/sched.h ../include/linux/head.h \
-  ../include/linux/fs.h ../include/linux/mm.h ../include/linux/kernel.h \
+  ../include/asm/system.h ../include/viz/sched.h ../include/viz/head.h \
+  ../include/viz/fs.h ../include/viz/mm.h ../include/viz/kernel.h \
   ../include/sys/param.h ../include/sys/time.h ../include/time.h \
   ../include/sys/resource.h 
-swap.o : swap.c ../include/string.h ../include/linux/sched.h \
-  ../include/linux/head.h ../include/linux/fs.h ../include/sys/types.h \
-  ../include/linux/mm.h ../include/linux/kernel.h ../include/signal.h \
+swap.o : swap.c ../include/string.h ../include/viz/sched.h \
+  ../include/viz/head.h ../include/viz/fs.h ../include/sys/types.h \
+  ../include/viz/mm.h ../include/viz/kernel.h ../include/signal.h \
   ../include/sys/param.h ../include/sys/time.h ../include/time.h \
   ../include/sys/resource.h 

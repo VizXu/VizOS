@@ -45,8 +45,8 @@
  *	so it isn't all that bad.
  */
 
-#include <linux/kernel.h>
-#include <linux/mm.h>
+#include <viz/kernel.h>
+#include <viz/mm.h>
 #include <asm/system.h>
 
 struct bucket_desc {	/* 16 bytes */

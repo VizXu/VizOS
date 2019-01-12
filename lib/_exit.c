@@ -1,5 +1,5 @@
 /*
- *  linux/lib/_exit.c
+ *  viz/lib/_exit.c
  *
  *  (C) 1991  Linus Torvalds
  */

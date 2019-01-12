@@ -1,5 +1,5 @@
 /*
- *  linux/mm/swap.c
+ *  viz/mm/swap.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -11,10 +11,10 @@
 
 #include <string.h>
 
-#include <linux/mm.h>
-#include <linux/sched.h>
-#include <linux/head.h>
-#include <linux/kernel.h>
+#include <viz/mm.h>
+#include <viz/sched.h>
+#include <viz/head.h>
+#include <viz/kernel.h>
 
 #define SWAP_BITS (4096<<3)
 

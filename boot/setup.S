@@ -13,7 +13,7 @@
 !
 
 ! NOTE! These had better be the same as in bootsect.s!
-#include <linux/config.h>
+#include <viz/config.h>
 
 INITSEG  = DEF_INITSEG	! we move boot here - out of the way
 SYSSEG   = DEF_SYSSEG	! system loaded at 0x10000 (65536).

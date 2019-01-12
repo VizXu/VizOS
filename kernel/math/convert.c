@@ -1,10 +1,10 @@
 /*
- * linux/kernel/math/convert.c
+ * viz/kernel/math/convert.c
  *
  * (C) 1991 Linus Torvalds
  */
 
-#include <linux/math_emu.h>
+#include <viz/math_emu.h>
 
 /*
  * NOTE!!! There is some "non-obvious" optimisations in the temp_to_long

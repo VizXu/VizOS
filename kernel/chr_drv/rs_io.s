@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/rs_io.s
+ *  viz/kernel/rs_io.s
  *
  *  (C) 1991  Linus Torvalds
  */

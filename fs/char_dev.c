@@ -1,5 +1,5 @@
 /*
- *  linux/fs/char_dev.c
+ *  viz/fs/char_dev.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -7,8 +7,8 @@
 #include <errno.h>
 #include <sys/types.h>
 
-#include <linux/sched.h>
-#include <linux/kernel.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
 
 #include <asm/segment.h>
 #include <asm/io.h>

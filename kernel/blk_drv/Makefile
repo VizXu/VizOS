@@ -41,31 +41,31 @@ dep:
 	cp tmp_make Makefile
 
 ### Dependencies:
-floppy.s floppy.o : floppy.c ../../include/linux/sched.h ../../include/linux/head.h \
-  ../../include/linux/fs.h ../../include/sys/types.h ../../include/linux/mm.h \
-  ../../include/linux/kernel.h ../../include/signal.h \
+floppy.s floppy.o : floppy.c ../../include/viz/sched.h ../../include/viz/head.h \
+  ../../include/viz/fs.h ../../include/sys/types.h ../../include/viz/mm.h \
+  ../../include/viz/kernel.h ../../include/signal.h \
   ../../include/sys/param.h ../../include/sys/time.h ../../include/time.h \
-  ../../include/sys/resource.h ../../include/linux/fdreg.h \
+  ../../include/sys/resource.h ../../include/viz/fdreg.h \
   ../../include/asm/system.h ../../include/asm/io.h \
   ../../include/asm/segment.h blk.h 
-hd.s hd.o : hd.c ../../include/linux/config.h ../../include/linux/sched.h \
-  ../../include/linux/head.h ../../include/linux/fs.h \
-  ../../include/sys/types.h ../../include/linux/mm.h \
-  ../../include/linux/kernel.h ../../include/signal.h \
+hd.s hd.o : hd.c ../../include/viz/config.h ../../include/viz/sched.h \
+  ../../include/viz/head.h ../../include/viz/fs.h \
+  ../../include/sys/types.h ../../include/viz/mm.h \
+  ../../include/viz/kernel.h ../../include/signal.h \
   ../../include/sys/param.h ../../include/sys/time.h ../../include/time.h \
-  ../../include/sys/resource.h ../../include/linux/hdreg.h \
+  ../../include/sys/resource.h ../../include/viz/hdreg.h \
   ../../include/asm/system.h ../../include/asm/io.h \
   ../../include/asm/segment.h blk.h 
-ll_rw_blk.s ll_rw_blk.o : ll_rw_blk.c ../../include/errno.h ../../include/linux/sched.h \
-  ../../include/linux/head.h ../../include/linux/fs.h \
-  ../../include/sys/types.h ../../include/linux/mm.h \
-  ../../include/linux/kernel.h ../../include/signal.h \
+ll_rw_blk.s ll_rw_blk.o : ll_rw_blk.c ../../include/errno.h ../../include/viz/sched.h \
+  ../../include/viz/head.h ../../include/viz/fs.h \
+  ../../include/sys/types.h ../../include/viz/mm.h \
+  ../../include/viz/kernel.h ../../include/signal.h \
   ../../include/sys/param.h ../../include/sys/time.h ../../include/time.h \
   ../../include/sys/resource.h ../../include/asm/system.h blk.h 
-ramdisk.s ramdisk.o : ramdisk.c ../../include/string.h ../../include/linux/config.h \
-  ../../include/linux/sched.h ../../include/linux/head.h \
-  ../../include/linux/fs.h ../../include/sys/types.h ../../include/linux/mm.h \
-  ../../include/linux/kernel.h ../../include/signal.h \
+ramdisk.s ramdisk.o : ramdisk.c ../../include/string.h ../../include/viz/config.h \
+  ../../include/viz/sched.h ../../include/viz/head.h \
+  ../../include/viz/fs.h ../../include/sys/types.h ../../include/viz/mm.h \
+  ../../include/viz/kernel.h ../../include/signal.h \
   ../../include/sys/param.h ../../include/sys/time.h ../../include/time.h \
   ../../include/sys/resource.h ../../include/asm/system.h \
   ../../include/asm/segment.h ../../include/asm/memory.h blk.h 

@@ -1,5 +1,5 @@
 /*
- *  linux/kernel/fork.c
+ *  viz/kernel/fork.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -12,8 +12,8 @@
  */
 #include <errno.h>
 
-#include <linux/sched.h>
-#include <linux/kernel.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
 #include <asm/segment.h>
 #include <asm/system.h>
 

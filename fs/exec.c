@@ -1,5 +1,5 @@
 /*
- *  linux/fs/exec.c
+ *  viz/fs/exec.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -13,7 +13,7 @@
  * the header into memory. The inode of the executable is put into
  * "current->executable", and page faults do the actual loading. Clean.
  *
- * Once more I can proudly say that linux stood up to being changed: it
+ * Once more I can proudly say that viz stood up to being changed: it
  * was less than 2 hours work to get demand-loading completely implemented.
  */
 
@@ -23,10 +23,10 @@
 #include <sys/stat.h>
 #include <a.out.h>
 
-#include <linux/fs.h>
-#include <linux/sched.h>
-#include <linux/kernel.h>
-#include <linux/mm.h>
+#include <viz/fs.h>
+#include <viz/sched.h>
+#include <viz/kernel.h>
+#include <viz/mm.h>
 #include <asm/segment.h>
 
 extern int sys_exit(int exit_code);

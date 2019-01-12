@@ -1,5 +1,5 @@
 /*
- *  linux/mm/memory.c
+ *  viz/mm/memory.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -32,9 +32,9 @@
 
 #include <asm/system.h>
 
-#include <linux/sched.h>
-#include <linux/head.h>
-#include <linux/kernel.h>
+#include <viz/sched.h>
+#include <viz/head.h>
+#include <viz/kernel.h>
 
 #define CODE_SPACE(addr) ((((addr)+4095)&~4095) < \
 current->start_code + current->end_code)

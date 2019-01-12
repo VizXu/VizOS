@@ -1,5 +1,5 @@
 /*
- * Resource control/accounting header file for linux
+ * Resource control/accounting header file for viz
  */
 
 #ifndef _SYS_RESOURCE_H

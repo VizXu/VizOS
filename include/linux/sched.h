@@ -31,9 +31,9 @@
 #define FIRST_TASK task[0]
 #define LAST_TASK task[NR_TASKS-1]
 
-#include <linux/head.h>
-#include <linux/fs.h>
-#include <linux/mm.h>
+#include <viz/head.h>
+#include <viz/fs.h>
+#include <viz/mm.h>
 #include <sys/param.h>
 #include <sys/time.h>
 #include <sys/resource.h>

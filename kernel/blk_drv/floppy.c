@@ -4,10 +4,10 @@
  *  (C) 2019 VizXu
  */
 
-#include <linux/sched.h>
-#include <linux/fs.h>
-#include <linux/kernel.h>
-#include <linux/fdreg.h>
+#include <viz/sched.h>
+#include <viz/fs.h>
+#include <viz/kernel.h>
+#include <viz/fdreg.h>
 #include <asm/system.h>
 #include <asm/io.h>
 #include <asm/segment.h>
@@ -45,7 +45,7 @@ static unsigned char reply_buffer[MAX_REPLIES];
 
 /*
  * This struct defines the different floppy types. Unlike minix
- * linux doesn't have a "search for right type"-type, as the code
+ * viz doesn't have a "search for right type"-type, as the code
  * for that is convoluted and weird. I've got enough problems with
  * this driver as it is.
  *

@@ -1,5 +1,5 @@
 /*
- *  linux/fs/open.c
+ *  viz/fs/open.c
  *
  *  (C) 1991  Linus Torvalds
  */
@@ -11,9 +11,9 @@
 #include <utime.h>
 #include <sys/stat.h>
 
-#include <linux/sched.h>
-#include <linux/tty.h>
-#include <linux/kernel.h>
+#include <viz/sched.h>
+#include <viz/tty.h>
+#include <viz/kernel.h>
 
 #include <asm/segment.h>
 

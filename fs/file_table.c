@@ -1,9 +1,9 @@
 /*
- *  linux/fs/file_table.c
+ *  viz/fs/file_table.c
  *
  *  (C) 1991  Linus Torvalds
  */
 
-#include <linux/fs.h>
+#include <viz/fs.h>
 
 struct file file_table[NR_FILE];
