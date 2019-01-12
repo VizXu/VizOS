@@ -1,33 +1,7 @@
 /*
- *  linux/kernel/floppy.c
+ *  viz/kernel/floppy.c
  *
- *  (C) 1991  Linus Torvalds
- */
-
-/*
- * 02.12.91 - Changed to static variables to indicate need for reset
- * and recalibrate. This makes some things easier (output_byte reset
- * checking etc), and means less interrupt jumping in case of errors,
- * so the code is hopefully easier to understand.
- */
-
-/*
- * This file is certainly a mess. I've tried my best to get it working,
- * but I don't like programming floppies, and I have only one anyway.
- * Urgel. I should check for more errors, and do more graceful error
- * recovery. Seems there are problems with several drives. I've tried to
- * correct them. No promises. 
- */
-
-/*
- * As with hd.c, all routines within this file can (and will) be called
- * by interrupts, so extreme caution is needed. A hardware interrupt
- * handler may not sleep, or a kernel panic will happen. Thus I cannot
- * call "floppy-on" directly, but have to set a special timer interrupt
- * etc.
- *
- * Also, I'm not certain this works on more than 1 floppy. Bugs may
- * abund.
+ *  (C) 2019 VizXu
  */
 
 #include <linux/sched.h>

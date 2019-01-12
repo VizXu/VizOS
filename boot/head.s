@@ -1,7 +1,7 @@
 /*
- *  linux/boot/head.s
+ *  viz/boot/head.s
  *
- *  (C) 1991  Linus Torvalds
+ *  (C) VizXu 
  */
 
 /*

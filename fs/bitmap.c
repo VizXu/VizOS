@@ -1,7 +1,7 @@
 /*
- *  linux/fs/bitmap.c
+ *  viz/fs/bitmap.c
  *
- *  (C) 1991  Linus Torvalds
+ *  (C) 2019  VizXu
  */
 
 /* bitmap.c contains the code that handles the inode and block bitmaps */
