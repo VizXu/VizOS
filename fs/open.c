@@ -1,7 +1,7 @@
 /*
  *  viz/fs/open.c
  *
- *  (C) 1991  Linus Torvalds
+ *  (C) 2019  VizXu
  */
 
 #include <string.h>

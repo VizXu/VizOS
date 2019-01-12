@@ -1,7 +1,7 @@
 /*
  *  viz/fs/read_write.c
  *
- *  (C) 1991  Linus Torvalds
+ *  (C) 2019  VizXu
  */
 
 #include <sys/stat.h>

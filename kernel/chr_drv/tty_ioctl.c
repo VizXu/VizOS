@@ -1,7 +1,7 @@
 /*
  *  viz/kernel/chr_drv/tty_ioctl.c
  *
- *  (C) 1991  Linus Torvalds
+ *  (C) 2019  VizXu
  */
 
 #include <errno.h>

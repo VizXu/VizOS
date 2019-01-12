@@ -1,10 +1,10 @@
 /*
  *  viz/kernel/vsprintf.c
  *
- *  (C) 1991  Linus Torvalds
+ *  (C) 2019  VizXu
  */
 
-/* vsprintf.c -- Lars Wirzenius & Linus Torvalds. */
+/* vsprintf.c -- Lars Wirzenius & VizXu. */
 /*
  * Wirzenius wrote this portably, Torvalds fucked it up :-)
  */

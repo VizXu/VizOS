@@ -1,7 +1,7 @@
 /*
  *  viz/fs/file_dev.c
  *
- *  (C) 1991  Linus Torvalds
+ *  (C) 2019  VizXu
  */
 
 #include <errno.h>
