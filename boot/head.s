@@ -7,7 +7,7 @@
 /*
  *  head.s contains the 32-bit startup code.
  *
- * NOTE!!! Startup happens at absolute address 0x00000000, which is also where
+ * NOTE### Startup happens at absolute address 0x00000000, which is also where
  * the page directory will exist. The startup code will be overwritten by
  * the page directory.
  */
@@ -35,7 +35,7 @@ startup_32:
 	cmpl %eax,0x100000
 	je 1b
 /*
- * NOTE! 486 should set bit 16, to check for write-protect in supervisor
+ * NOTE# 486 should set bit 16, to check for write-protect in supervisor
  * mode. Then it would be unnecessary with the "verify_area()"-calls.
  * 486 users probably want to set the NE (#5) bit also, so as to use
  * int 16 for math errors.
@@ -178,7 +178,7 @@ ignore_int:
  * the first 16MB. The pager assumes that no illegal
  * addresses are produced (ie >4Mb on a 4Mb machine).
  *
- * NOTE! Although all physical memory should be identity
+ * NOTE# Although all physical memory should be identity
  * mapped by this routine, only the kernel page functions
  * use the >1Mb addresses directly. All "normal" functions
  * use just the lower 1Mb, or the local data space, which

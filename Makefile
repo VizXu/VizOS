@@ -5,7 +5,7 @@
 RAMDISK = #-DRAMDISK=512
 
 #AS86	=as86 -0 -a
-AS86	=as -a
+AS86	=as -a --32
 #LD86	=ld86 -0
 LD86	=ld
 

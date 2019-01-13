@@ -1,23 +1,23 @@
-!
-!	setup.s		(C) 2019 VizXu
-!
-! setup.s is responsible for getting the system data from the BIOS,
-! and putting them into the appropriate places in system memory.
-! both setup.s and system has been loaded by the bootblock.
-!
-! This code asks the bios for memory/disk/other parameters, and
-! puts them in a "safe" place: 0x90000-0x901FF, ie where the
-! boot-block used to be. It is then up to the protected mode
-! system to read them from there before the area is overwritten
-! for buffer-blocks.
-!
+#
+#	setup.s		(C) 2019 VizXu
+#
+# setup.s is responsible for getting the system data from the BIOS,
+# and putting them into the appropriate places in system memory.
+# both setup.s and system has been loaded by the bootblock.
+#
+# This code asks the bios for memory/disk/other parameters, and
+# puts them in a "safe" place: 0x90000-0x901FF, ie where the
+# boot-block used to be. It is then up to the protected mode
+# system to read them from there before the area is overwritten
+# for buffer-blocks.
+#
 
-! NOTE! These had better be the same as in bootsect.s!
+# NOTE# These had better be the same as in bootsect.s#
 #include <viz/config.h>
 
-INITSEG  = DEF_INITSEG	! we move boot here - out of the way
-SYSSEG   = DEF_SYSSEG	! system loaded at 0x10000 (65536).
-SETUPSEG = DEF_SETUPSEG	! this is the current segment
+INITSEG  = DEF_INITSEG	# we move boot here - out of the way
+SYSSEG   = DEF_SYSSEG	# system loaded at 0x10000 (65536).
+SETUPSEG = DEF_SETUPSEG	# this is the current segment
 
 .globl begtext, begdata, begbss, endtext, enddata, endbss
 .text
@@ -31,19 +31,19 @@ begbss:
 entry start
 start:
 
-! ok, the read went well so we get current cursor position and save it for
-! posterity.
+# ok, the read went well so we get current cursor position and save it for
+# posterity.
 
-	mov	ax,#INITSEG	! this is done in bootsect already, but...
+	mov	ax,#INITSEG	# this is done in bootsect already, but...
 	mov	ds,ax
 
-! Get memory size (extended mem, kB)
+# Get memory size (extended mem, kB)
 
 	mov	ah,#0x88
 	int	0x15
 	mov	[2],ax
 
-! check for EGA/VGA and some config parameters
+# check for EGA/VGA and some config parameters
 
 	mov	ah,#0x12
 	mov	bl,#0x10
@@ -56,19 +56,19 @@ start:
 	je	novga
 	call	chsvga
 novga:	mov	[14],ax
-	mov	ah,#0x03	! read cursor pos
+	mov	ah,#0x03	# read cursor pos
 	xor	bh,bh
-	int	0x10		! save it in known place, con_init fetches
-	mov	[0],dx		! it from 0x90000.
+	int	0x10		# save it in known place, con_init fetches
+	mov	[0],dx		# it from 0x90000.
 	
-! Get video-card data:
+# Get video-card data:
 	
 	mov	ah,#0x0f
 	int	0x10
-	mov	[4],bx		! bh = display page
-	mov	[6],ax		! al = video mode, ah = window width
+	mov	[4],bx		# bh = display page
+	mov	[6],ax		# al = video mode, ah = window width
 
-! Get hd0 data
+# Get hd0 data
 
 	mov	ax,#0x0000
 	mov	ds,ax
@@ -80,7 +80,7 @@ novga:	mov	[14],ax
 	rep
 	movsb
 
-! Get hd1 data
+# Get hd1 data
 
 	mov	ax,#0x0000
 	mov	ds,ax
@@ -92,7 +92,7 @@ novga:	mov	[14],ax
 	rep
 	movsb
 
-! Check that there IS a hd1 :-)
+# Check that there IS a hd1 :-)
 
 	mov	ax,#0x01500
 	mov	dl,#0x81
@@ -110,20 +110,20 @@ no_disk1:
 	stosb
 is_disk1:
 
-! now we want to move to protected mode ...
+# now we want to move to protected mode ...
 
-	cli			! no interrupts allowed !
+	cli			# no interrupts allowed #
 
-! first we move the system to it's rightful place
+# first we move the system to it's rightful place
 
 	mov	ax,#0x0000
-	cld			! 'direction'=0, movs moves forward
+	cld			# 'direction'=0, movs moves forward
 do_move:
-	mov	es,ax		! destination segment
+	mov	es,ax		# destination segment
 	add	ax,#0x1000
 	cmp	ax,#0x9000
 	jz	end_move
-	mov	ds,ax		! source segment
+	mov	ds,ax		# source segment
 	sub	di,di
 	sub	si,si
 	mov 	cx,#0x8000
@@ -131,86 +131,86 @@ do_move:
 	movsw
 	jmp	do_move
 
-! then we load the segment descriptors
+# then we load the segment descriptors
 
 end_move:
-	mov	ax,#SETUPSEG	! right, forgot this at first. didn't work :-)
+	mov	ax,#SETUPSEG	# right, forgot this at first. didn't work :-)
 	mov	ds,ax
-	lidt	idt_48		! load idt with 0,0
-	lgdt	gdt_48		! load gdt with whatever appropriate
+	lidt	idt_48		# load idt with 0,0
+	lgdt	gdt_48		# load gdt with whatever appropriate
 
-! that was painless, now we enable A20
+# that was painless, now we enable A20
 
 	call	empty_8042
-	mov	al,#0xD1		! command write
+	mov	al,#0xD1		# command write
 	out	#0x64,al
 	call	empty_8042
-	mov	al,#0xDF		! A20 on
+	mov	al,#0xDF		# A20 on
 	out	#0x60,al
 	call	empty_8042
 
-! well, that went ok, I hope. Now we have to reprogram the interrupts :-(
-! we put them right after the intel-reserved hardware interrupts, at
-! int 0x20-0x2F. There they won't mess up anything. Sadly IBM really
-! messed this up with the original PC, and they haven't been able to
-! rectify it afterwards. Thus the bios puts interrupts at 0x08-0x0f,
-! which is used for the internal hardware interrupts as well. We just
-! have to reprogram the 8259's, and it isn't fun.
+# well, that went ok, I hope. Now we have to reprogram the interrupts :-(
+# we put them right after the intel-reserved hardware interrupts, at
+# int 0x20-0x2F. There they won't mess up anything. Sadly IBM really
+# messed this up with the original PC, and they haven't been able to
+# rectify it afterwards. Thus the bios puts interrupts at 0x08-0x0f,
+# which is used for the internal hardware interrupts as well. We just
+# have to reprogram the 8259's, and it isn't fun.
 
-	mov	al,#0x11		! initialization sequence
-	out	#0x20,al		! send it to 8259A-1
-	.word	0x00eb,0x00eb		! jmp $+2, jmp $+2
-	out	#0xA0,al		! and to 8259A-2
+	mov	al,#0x11		# initialization sequence
+	out	#0x20,al		# send it to 8259A-1
+	.word	0x00eb,0x00eb		# jmp $+2, jmp $+2
+	out	#0xA0,al		# and to 8259A-2
 	.word	0x00eb,0x00eb
-	mov	al,#0x20		! start of hardware int's (0x20)
+	mov	al,#0x20		# start of hardware int's (0x20)
 	out	#0x21,al
 	.word	0x00eb,0x00eb
-	mov	al,#0x28		! start of hardware int's 2 (0x28)
+	mov	al,#0x28		# start of hardware int's 2 (0x28)
 	out	#0xA1,al
 	.word	0x00eb,0x00eb
-	mov	al,#0x04		! 8259-1 is master
+	mov	al,#0x04		# 8259-1 is master
 	out	#0x21,al
 	.word	0x00eb,0x00eb
-	mov	al,#0x02		! 8259-2 is slave
+	mov	al,#0x02		# 8259-2 is slave
 	out	#0xA1,al
 	.word	0x00eb,0x00eb
-	mov	al,#0x01		! 8086 mode for both
-	out	#0x21,al
-	.word	0x00eb,0x00eb
-	out	#0xA1,al
-	.word	0x00eb,0x00eb
-	mov	al,#0xFF		! mask off all interrupts for now
+	mov	al,#0x01		# 8086 mode for both
 	out	#0x21,al
 	.word	0x00eb,0x00eb
 	out	#0xA1,al
+	.word	0x00eb,0x00eb
+	mov	al,#0xFF		# mask off all interrupts for now
+	out	#0x21,al
+	.word	0x00eb,0x00eb
+	out	#0xA1,al
 
-! well, that certainly wasn't fun :-(. Hopefully it works, and we don't
-! need no steenking BIOS anyway (except for the initial loading :-).
-! The BIOS-routine wants lots of unnecessary data, and it's less
-! "interesting" anyway. This is how REAL programmers do it.
-!
-! Well, now's the time to actually move into protected mode. To make
-! things as simple as possible, we do no register set-up or anything,
-! we let the gnu-compiled 32-bit programs do that. We just jump to
-! absolute address 0x00000, in 32-bit protected mode.
+# well, that certainly wasn't fun :-(. Hopefully it works, and we don't
+# need no steenking BIOS anyway (except for the initial loading :-).
+# The BIOS-routine wants lots of unnecessary data, and it's less
+# "interesting" anyway. This is how REAL programmers do it.
+#
+# Well, now's the time to actually move into protected mode. To make
+# things as simple as possible, we do no register set-up or anything,
+# we let the gnu-compiled 32-bit programs do that. We just jump to
+# absolute address 0x00000, in 32-bit protected mode.
 
-	mov	ax,#0x0001	! protected mode (PE) bit
-	lmsw	ax		! This is it!
-	jmpi	0,8		! jmp offset 0 of segment 8 (cs)
+	mov	ax,#0x0001	# protected mode (PE) bit
+	lmsw	ax		# This is it#
+	jmpi	0,8		# jmp offset 0 of segment 8 (cs)
 
-! This routine checks that the keyboard command queue is empty
-! No timeout is used - if this hangs there is something wrong with
-! the machine, and we probably couldn't proceed anyway.
+# This routine checks that the keyboard command queue is empty
+# No timeout is used - if this hangs there is something wrong with
+# the machine, and we probably couldn't proceed anyway.
 empty_8042:
 	.word	0x00eb,0x00eb
-	in	al,#0x64	! 8042 status port
-	test	al,#2		! is input buffer full?
-	jnz	empty_8042	! yes - loop
+	in	al,#0x64	# 8042 status port
+	test	al,#2		# is input buffer full?
+	jnz	empty_8042	# yes - loop
 	ret
 
-! Routine trying to recognize type of SVGA-board present (if any)
-! and if it recognize one gives the choices of resolution it offers.
-! If one is found the resolution chosen is given by al,ah (rows,cols).
+# Routine trying to recognize type of SVGA-board present (if any)
+# and if it recognize one gives the choices of resolution it offers.
+# If one is found the resolution chosen is given by al,ah (rows,cols).
 
 chsvga:	cld
 	push	ds
@@ -230,7 +230,7 @@ nokey:	in	al,#0x60
 	mov	ax,#0x5019
 	pop	ds
 	ret
-svga:	lea 	si,idati		! Check ATI 'clues'
+svga:	lea 	si,idati		# Check ATI 'clues'
 	mov	di,#0x31
 	mov 	cx,#0x09
 	repe
@@ -240,7 +240,7 @@ svga:	lea 	si,idati		! Check ATI 'clues'
 	lea	di,moati
 	lea	cx,selmod
 	jmp	cx
-noati:	mov	ax,#0x200f		! Check Ahead 'clues'
+noati:	mov	ax,#0x200f		# Check Ahead 'clues'
 	mov	dx,#0x3ce
 	out	dx,ax
 	inc	dx
@@ -253,7 +253,7 @@ isahed:	lea	si,dscahead
 	lea	di,moahead
 	lea	cx,selmod
 	jmp	cx
-noahed:	mov	dx,#0x3c3		! Check Chips & Tech. 'clues'
+noahed:	mov	dx,#0x3c3		# Check Chips & Tech. 'clues'
 	in	al,dx
 	or	al,#0x10
 	out	dx,al
@@ -270,7 +270,7 @@ noahed:	mov	dx,#0x3c3		! Check Chips & Tech. 'clues'
 	lea	di,mocandt
 	lea	cx,selmod
 	jmp	cx
-nocant:	mov	dx,#0x3d4		! Check Cirrus 'clues'
+nocant:	mov	dx,#0x3d4		# Check Cirrus 'clues'
 	mov	al,#0x0c
 	out	dx,al
 	inc	dx
@@ -316,7 +316,7 @@ rst3d4:	mov	dx,#0x3d4
 	add	ax,#0x0c
 	out	dx,ax
 	ret	
-nocirr:	call	rst3d4			! Check Everex 'clues'
+nocirr:	call	rst3d4			# Check Everex 'clues'
 	mov	ax,#0x7000
 	xor	bx,bx
 	int	0x10
@@ -333,7 +333,7 @@ nocirr:	call	rst3d4			! Check Everex 'clues'
 	jmp	cx
 istrid:	lea	cx,ev2tri
 	jmp	cx
-noevrx:	lea	si,idgenoa		! Check Genoa 'clues'
+noevrx:	lea	si,idgenoa		# Check Genoa 'clues'
 	xor 	ax,ax
 	seg es
 	mov	al,[0x37]
@@ -354,7 +354,7 @@ l1:	inc	si
 	lea	di,mogenoa
 	lea	cx,selmod
 	jmp	cx
-nogen:	lea	si,idparadise		! Check Paradise 'clues'
+nogen:	lea	si,idparadise		# Check Paradise 'clues'
 	mov	di,#0x7d
 	mov	cx,#0x04
 	repe
@@ -364,7 +364,7 @@ nogen:	lea	si,idparadise		! Check Paradise 'clues'
 	lea	di,moparadise
 	lea	cx,selmod
 	jmp	cx
-nopara:	mov	dx,#0x3c4		! Check Trident 'clues'
+nopara:	mov	dx,#0x3c4		# Check Trident 'clues'
 	mov	al,#0x0e
 	out	dx,al
 	inc	dx
@@ -374,12 +374,12 @@ nopara:	mov	dx,#0x3c4		! Check Trident 'clues'
 	out	dx,al
 	in	al,dx
 	xchg	al,ah
-	mov	bl,al		! Strange thing ... in the book this wasn't
-	and	bl,#0x02	! necessary but it worked on my card which
-	jz	setb2		! is a trident. Without it the screen goes
-	and	al,#0xfd	! blurred ...
-	jmp	clrb2		!
-setb2:	or	al,#0x02	!
+	mov	bl,al		# Strange thing ... in the book this wasn't
+	and	bl,#0x02	# necessary but it worked on my card which
+	jz	setb2		# is a trident. Without it the screen goes
+	and	al,#0xfd	# blurred ...
+	jmp	clrb2		#
+setb2:	or	al,#0x02	#
 clrb2:	out	dx,al
 	and	ah,#0x0f
 	cmp	ah,#0x02
@@ -388,8 +388,8 @@ ev2tri:	lea	si,dsctrident
 	lea	di,motrident
 	lea	cx,selmod
 	jmp	cx
-notrid:	mov	dx,#0x3cd		! Check Tseng 'clues'
-	in	al,dx			! Could things be this simple ! :-)
+notrid:	mov	dx,#0x3cd		# Check Tseng 'clues'
+	in	al,dx			# Could things be this simple # :-)
 	mov	bl,al
 	mov	al,#0x55
 	out	dx,al
@@ -403,7 +403,7 @@ notrid:	mov	dx,#0x3cd		! Check Tseng 'clues'
 	lea	di,motseng
 	lea	cx,selmod
 	jmp	cx
-notsen:	mov	dx,#0x3cc		! Check Video7 'clues'
+notsen:	mov	dx,#0x3cc		# Check Video7 'clues'
 	in	al,dx
 	mov	dx,#0x3b4
 	and	al,#0x01
@@ -466,7 +466,7 @@ tbl:	pop	bx
 	call	prtstr
 	pop	si
 	add	cl,#0x80
-nonum:	in	al,#0x60	! Quick and dirty...
+nonum:	in	al,#0x60	# Quick and dirty...
 	cmp	al,#0x82
 	jb	nonum
 	cmp	al,#0x8b
@@ -489,11 +489,11 @@ nozero:	sub	al,#0x80
 	lodsw
 	pop	ds
 	ret
-novid7:	pop	ds	! Here could be code to support standard 80x50,80x30
+novid7:	pop	ds	# Here could be code to support standard 80x50,80x30
 	mov	ax,#0x5019	
 	ret
 
-! Routine that 'tabs' to next col.
+# Routine that 'tabs' to next col.
 
 spcing:	mov	al,#0x2e
 	call	prnt1
@@ -507,7 +507,7 @@ spcing:	mov	al,#0x2e
 	call	prnt1
 	ret	
 
-! Routine to print asciiz-string at DS:SI
+# Routine to print asciiz-string at DS:SI
 
 prtstr:	lodsb
 	and	al,al
@@ -516,8 +516,8 @@ prtstr:	lodsb
 	jmp	prtstr
 fin:	ret
 
-! Routine to print a decimal value on screen, the value to be
-! printed is put in al (i.e 0-255). 
+# Routine to print a decimal value on screen, the value to be
+# printed is put in al (i.e 0-255). 
 
 dprnt:	push	ax
 	push	cx
@@ -537,7 +537,7 @@ skip10:	mov	al,ah
 	pop	ax
 	ret
 
-! Part of above routine, this one just prints ascii al
+# Part of above routine, this one just prints ascii al
 
 prnt1:	push	ax
 	push	cx
@@ -549,7 +549,7 @@ prnt1:	push	ax
 	pop	ax
 	ret
 
-! Prints <CR> + <LF>
+# Prints <CR> + <LF>
 
 docr:	push	ax
 	push	cx
@@ -565,25 +565,25 @@ docr:	push	ax
 	ret	
 	
 gdt:
-	.word	0,0,0,0		! dummy
+	.word	0,0,0,0		# dummy
 
-	.word	0x07FF		! 8Mb - limit=2047 (2048*4096=8Mb)
-	.word	0x0000		! base address=0
-	.word	0x9A00		! code read/exec
-	.word	0x00C0		! granularity=4096, 386
+	.word	0x07FF		# 8Mb - limit=2047 (2048*4096=8Mb)
+	.word	0x0000		# base address=0
+	.word	0x9A00		# code read/exec
+	.word	0x00C0		# granularity=4096, 386
 
-	.word	0x07FF		! 8Mb - limit=2047 (2048*4096=8Mb)
-	.word	0x0000		! base address=0
-	.word	0x9200		! data read/write
-	.word	0x00C0		! granularity=4096, 386
+	.word	0x07FF		# 8Mb - limit=2047 (2048*4096=8Mb)
+	.word	0x0000		# base address=0
+	.word	0x9200		# data read/write
+	.word	0x00C0		# granularity=4096, 386
 
 idt_48:
-	.word	0			! idt limit=0
-	.word	0,0			! idt base=0L
+	.word	0			# idt limit=0
+	.word	0,0			# idt base=0L
 
 gdt_48:
-	.word	0x800		! gdt limit=2048, 256 GDT entries
-	.word	512+gdt,0x9	! gdt base = 0X9xxxx
+	.word	0x800		# gdt limit=2048, 256 GDT entries
+	.word	512+gdt,0x9	# gdt base = 0X9xxxx
 
 msg1:		.ascii	"Press <RETURN> to see SVGA-modes available or any other key to continue."
 		db	0x0d, 0x0a, 0x0a, 0x00
@@ -597,7 +597,7 @@ idcandt:	.byte	0xa5
 idgenoa:	.byte	0x77, 0x00, 0x66, 0x99
 idparadise:	.ascii	"VGA="
 
-! Manufacturer:	  Numofmodes:	Mode:
+# Manufacturer:	  Numofmodes:	Mode:
 
 moati:		.byte	0x02,	0x23, 0x33 
 moahead:	.byte	0x05,	0x22, 0x23, 0x24, 0x2f, 0x34
@@ -610,7 +610,7 @@ motrident:	.byte	0x07,	0x50, 0x51, 0x52, 0x57, 0x58, 0x59, 0x5a
 motseng:	.byte	0x05,	0x26, 0x2a, 0x23, 0x24, 0x22
 movideo7:	.byte	0x06,	0x40, 0x43, 0x44, 0x41, 0x42, 0x45
 
-!			msb = Cols lsb = Rows:
+#			msb = Cols lsb = Rows:
 
 dscati:		.word	0x8419, 0x842c
 dscahead:	.word	0x842c, 0x8419, 0x841c, 0xa032, 0x5042
