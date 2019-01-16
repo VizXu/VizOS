@@ -8,7 +8,7 @@ static char log_buf[1024];
 
 static unsigned short cur_log_level = LOG_INFO_TYPE;
 
-// linux0.12 kernel log function
+// log function
 void Log(unsigned short log_level, const char *fmt, ...)
 {
     if (log_level >= cur_log_level) {
