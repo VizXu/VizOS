@@ -6,83 +6,82 @@
 # unless it's something special (ie not a .c file).
 #
 
-AR	=gar
-AS	=gas
-LD	=gld
-LDFLAGS	=-s -x
-CC	=gcc
-CFLAGS	=-Wall -O -fstrength-reduce -fomit-frame-pointer -fcombine-regs \
-	-finline-functions -mstring-insns -nostdinc -I../../include
-CPP	=gcc -E -nostdinc -I../../include
+include ../../Makefile.header
+
+CFLAGS	+= -finline-functions -nostdinc -I../../include
+CPP_DISPLAY	+= -I../../include
+CPP += -I../../include
 
 .c.s:
-	$(CC) $(CFLAGS) \
+	@$(CC) $(CFLAGS) \
 	-S -o $*.s $<
 .s.o:
-	$(AS) -c -o $*.o $<
+	@$(AS) -o $*.o $<
 .c.o:
-	$(CC) $(CFLAGS) \
+	@$(CC) $(CFLAGS) \
 	-c -o $*.o $<
 
 OBJS  = tty_io.o console.o keyboard.o serial.o rs_io.o \
 	tty_ioctl.o pty.o
-
 chr_drv.a: $(OBJS)
-	$(AR) rcs chr_drv.a $(OBJS)
-	sync
-
-keyboard.s: keyboard.S
-	$(CPP) -traditional keyboard.S -o keyboard.s
-
+	@$(AR) rcs chr_drv.a $(OBJS)
+	@sync
+	
+keyboard.s: keyboard.S ../../include/viz/config.h
+	$(CPP_DISPLAY) -traditional keyboard.S -o keyboard.s
+	
 clean:
-	rm -f core *.o *.a tmp_make keyboard.s
-	for i in *.c;do rm -f `basename $$i .c`.s;done
+	@rm -f core *.o *.a tmp_make keyboard.s
+	@for i in *.c;do rm -f `basename $$i .c`.s;done
 
 dep:
-	sed '/\#\#\# Dependencies/q' < Makefile > tmp_make
-	(for i in *.c;do echo -n `echo $$i | sed 's,\.c,\.s,'`" "; \
+	@sed '/\#\#\# Dependencies/q' < Makefile > tmp_make
+	@(for i in *.c;do echo -n `echo $$i | sed 's,\.c,\.s,'`" "; \
 		$(CPP) -M $$i;done) >> tmp_make
-	cp tmp_make Makefile
+	@cp tmp_make Makefile
 
 ### Dependencies:
-console.s console.o : console.c ../../include/viz/sched.h \
-  ../../include/viz/head.h ../../include/viz/fs.h \
-  ../../include/sys/types.h ../../include/viz/mm.h \
-  ../../include/viz/kernel.h ../../include/signal.h \
-  ../../include/sys/param.h ../../include/sys/time.h ../../include/time.h \
-  ../../include/sys/resource.h ../../include/viz/tty.h \
-  ../../include/termios.h ../../include/viz/config.h ../../include/asm/io.h \
-  ../../include/asm/system.h ../../include/asm/segment.h \
-  ../../include/string.h ../../include/errno.h 
-pty.s pty.o : pty.c ../../include/viz/tty.h ../../include/termios.h \
-  ../../include/sys/types.h ../../include/viz/sched.h \
-  ../../include/viz/head.h ../../include/viz/fs.h \
-  ../../include/viz/mm.h ../../include/viz/kernel.h \
-  ../../include/signal.h ../../include/sys/param.h ../../include/sys/time.h \
-  ../../include/time.h ../../include/sys/resource.h \
-  ../../include/asm/system.h ../../include/asm/io.h 
-serial.s serial.o : serial.c ../../include/viz/tty.h ../../include/termios.h \
-  ../../include/sys/types.h ../../include/viz/sched.h \
-  ../../include/viz/head.h ../../include/viz/fs.h \
-  ../../include/viz/mm.h ../../include/viz/kernel.h \
-  ../../include/signal.h ../../include/sys/param.h ../../include/sys/time.h \
-  ../../include/time.h ../../include/sys/resource.h \
-  ../../include/asm/system.h ../../include/asm/io.h 
-tty_io.s tty_io.o : tty_io.c ../../include/ctype.h ../../include/errno.h \
-  ../../include/signal.h ../../include/sys/types.h ../../include/unistd.h \
-  ../../include/sys/stat.h ../../include/sys/time.h ../../include/time.h \
-  ../../include/sys/times.h ../../include/sys/utsname.h \
-  ../../include/sys/param.h ../../include/sys/resource.h \
-  ../../include/utime.h ../../include/viz/sched.h \
-  ../../include/viz/head.h ../../include/viz/fs.h \
-  ../../include/viz/mm.h ../../include/viz/kernel.h \
-  ../../include/viz/tty.h ../../include/termios.h \
-  ../../include/asm/segment.h ../../include/asm/system.h 
-tty_ioctl.s tty_ioctl.o : tty_ioctl.c ../../include/errno.h ../../include/termios.h \
-  ../../include/sys/types.h ../../include/viz/sched.h \
-  ../../include/viz/head.h ../../include/viz/fs.h \
-  ../../include/viz/mm.h ../../include/viz/kernel.h \
-  ../../include/signal.h ../../include/sys/param.h ../../include/sys/time.h \
-  ../../include/time.h ../../include/sys/resource.h ../../include/viz/tty.h \
-  ../../include/asm/io.h ../../include/asm/segment.h \
-  ../../include/asm/system.h 
+console.s console.o: console.c ../../include/viz/sched.h \
+ ../../include/viz/head.h ../../include/viz/fs.h \
+ ../../include/sys/types.h ../../include/viz/mm.h \
+ ../../include/viz/kernel.h ../../include/signal.h \
+ ../../include/sys/param.h ../../include/sys/time.h ../../include/time.h \
+ ../../include/sys/resource.h ../../include/viz/tty.h \
+ ../../include/termios.h ../../include/asm/io.h \
+ ../../include/asm/system.h ../../include/asm/segment.h \
+ ../../include/errno.h
+pty.s pty.o: pty.c ../../include/viz/tty.h ../../include/termios.h \
+ ../../include/sys/types.h ../../include/viz/sched.h \
+ ../../include/viz/head.h ../../include/viz/fs.h \
+ ../../include/viz/mm.h ../../include/viz/kernel.h \
+ ../../include/signal.h ../../include/sys/param.h \
+ ../../include/sys/time.h ../../include/time.h \
+ ../../include/sys/resource.h ../../include/asm/system.h \
+ ../../include/asm/io.h
+serial.s serial.o: serial.c ../../include/viz/tty.h ../../include/termios.h \
+ ../../include/sys/types.h ../../include/viz/sched.h \
+ ../../include/viz/head.h ../../include/viz/fs.h \
+ ../../include/viz/mm.h ../../include/viz/kernel.h \
+ ../../include/signal.h ../../include/sys/param.h \
+ ../../include/sys/time.h ../../include/time.h \
+ ../../include/sys/resource.h ../../include/asm/system.h \
+ ../../include/asm/io.h
+tty_io.s tty_io.o: tty_io.c ../../include/ctype.h ../../include/errno.h \
+ ../../include/signal.h ../../include/sys/types.h ../../include/unistd.h \
+ ../../include/sys/stat.h ../../include/sys/time.h ../../include/time.h \
+ ../../include/sys/times.h ../../include/sys/utsname.h \
+ ../../include/sys/param.h ../../include/sys/resource.h \
+ ../../include/utime.h ../../include/viz/sched.h \
+ ../../include/viz/head.h ../../include/viz/fs.h \
+ ../../include/viz/mm.h ../../include/viz/kernel.h \
+ ../../include/viz/tty.h ../../include/termios.h \
+ ../../include/asm/segment.h ../../include/asm/system.h
+tty_ioctl.s tty_ioctl.o: tty_ioctl.c ../../include/errno.h ../../include/termios.h \
+ ../../include/sys/types.h ../../include/viz/sched.h \
+ ../../include/viz/head.h ../../include/viz/fs.h \
+ ../../include/viz/mm.h ../../include/viz/kernel.h \
+ ../../include/signal.h ../../include/sys/param.h \
+ ../../include/sys/time.h ../../include/time.h \
+ ../../include/sys/resource.h ../../include/viz/tty.h \
+ ../../include/asm/io.h ../../include/asm/segment.h \
+ ../../include/asm/system.h

@@ -21,7 +21,6 @@ extern int blankinterval;
 extern int blankcount;
 
 #define free(x) free_s((x), 0)
-#define LOG_INFO_TYPE       0
 
 /*
  * This is defined as a macro, but at some point this might become a

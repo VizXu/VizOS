@@ -20,10 +20,10 @@
  * won't be any messing with the stack from main(), but we define
  * some others too.
  */
-static inline _syscall0(int,fork)
-static inline _syscall0(int,pause)
-static inline _syscall1(int,setup,void *,BIOS)
-static inline _syscall0(int,sync)
+_syscall0(int,fork)
+_syscall0(int,pause)
+_syscall1(int,setup,void *,BIOS)
+_syscall0(int,sync)
 
 #include <viz/tty.h>
 #include <viz/sched.h>
@@ -53,6 +53,20 @@ extern void floppy_init(void);
 extern void mem_init(long start, long end);
 extern long rd_init(long mem_start, int length);
 extern long kernel_mktime(struct tm * tm);
+
+
+static inline long fork_for_process0() {
+	long __res;
+	__asm__ volatile (
+		"int $0x80\n\t"  														
+		: "=a" (__res)  														
+		: "0" (2));  															
+	if (__res >= 0)  															
+		return __res;
+	errno = -__res;  														
+	return -1;
+}
+
 
 static int sprintf(char * str, const char *fmt, ...)
 {
@@ -162,7 +176,7 @@ void main(void)		/* This really IS void, no error here. */
 	floppy_init();
 	sti();
 	move_to_user_mode();
-	if (!fork()) {		/* we count on this going ok */
+	if (!fork_for_process0()) {		/* we count on this going ok */
 		init();
 	}
 /*
@@ -173,10 +187,10 @@ void main(void)		/* This really IS void, no error here. */
  * task can run, and if not we return here.
  */
 	for(;;)
-		__asm__("int $0x80"::"a" (__NR_pause):"ax");
+		__asm__("int $0x80"::"a" (__NR_pause):);
 }
 
-static int printf(const char *fmt, ...)
+int printf(const char *fmt, ...)
 {
 	va_list args;
 	int i;

@@ -1,29 +1,24 @@
+
 #
 # if you want the ram-disk device, define this to be the
 # size in blocks.
 #
-RAMDISK = #-DRAMDISK=512
+RAMDISK =  #-DRAMDISK=1024
 
-#AS86	=as86 -0 -a
-AS86	=as -a --32
-#LD86	=ld86 -0
-LD86	=ld
+# This is a basic Makefile for setting the general configuration
+include Makefile.header
 
-AS	=gas
-LD	=gld
-LDFLAGS	=-s -x -M
-CC	=gcc $(RAMDISK)
-CFLAGS	=-Wall -O -fstrength-reduce -fomit-frame-pointer \
--fcombine-regs -mstring-insns
-CPP	=cpp -nostdinc -Iinclude
+LDFLAGS	+= -Ttext 0 -e startup_32
+CFLAGS	+= $(RAMDISK)
+CPP	+= -Iinclude
 
 #
 # ROOT_DEV specifies the default root-device when making the image.
 # This can be either FLOPPY, /dev/xxxx or empty, in which case the
 # default of /dev/hd6 is used by 'build'.
 #
-ROOT_DEV=/dev/hd6
-SWAP_DEV=/dev/hd2
+ROOT_DEV=0301
+SWAP_DEV=0304
 
 ARCHIVES=kernel/kernel.o mm/mm.o fs/fs.o
 DRIVERS =kernel/blk_drv/blk_drv.a kernel/chr_drv/chr_drv.a
@@ -34,26 +29,36 @@ LIBS	=lib/lib.a
 	$(CC) $(CFLAGS) \
 	-nostdinc -Iinclude -S -o $*.s $<
 .s.o:
-	$(AS) -c -o $*.o $<
+	$(AS) -o $*.o $<
 .c.o:
 	$(CC) $(CFLAGS) \
 	-nostdinc -Iinclude -c -o $*.o $<
 
-all:	Image
 
-Image: boot/bootsect boot/setup tools/system tools/build
-	tools/build boot/bootsect boot/setup tools/system $(ROOT_DEV) \
-		$(SWAP_DEV) > Image
-	sync
+all: clean Image
 
-disk: Image
-	dd bs=8192 if=Image of=/dev/PS0
+Image: boot/bootsect boot/setup tools/system
+	@cp -f tools/system system.tmp
+	@strip system.tmp
+	@objcopy -O binary -R .note -R .comment system.tmp tools/kernel
+	@tools/build.sh boot/bootsect boot/setup tools/kernel Kernel_Image $(ROOT_DEV) $(SWAP_DEV)
+	@rm system.tmp
+	@rm tools/kernel -f
+	@cp Kernel_Image ../viz-0.12-080324
+	@sync
+
+boot/bootsect: boot/bootsect.S
+	@make bootsect -C boot
+
+boot/setup: boot/setup.S
+	@make setup -C boot
+
+boot/head.o: boot/head.s
+	@make head.o -C boot
 
 tools/build: tools/build.c
 	$(CC) $(CFLAGS) \
 	-o tools/build tools/build.c
-
-boot/head.o: boot/head.s
 
 tools/system:	boot/head.o init/main.o \
 		$(ARCHIVES) $(DRIVERS) $(MATH) $(LIBS)
@@ -62,70 +67,55 @@ tools/system:	boot/head.o init/main.o \
 	$(DRIVERS) \
 	$(MATH) \
 	$(LIBS) \
-	-o tools/system > System.map
+	-o tools/system
+	@nm tools/system | grep -v '\(compiled\)\|\(\.o$$\)\|\( [aU] \)\|\(\.\.ng$$\)\|\(LASH[RL]DI\)'| sort > System.map
+	@objdump -S tools/system > system.S
 
 kernel/math/math.a:
-	(cd kernel/math; make)
-
-kernel/blk_drv/blk_drv.a:
-	(cd kernel/blk_drv; make)
-
-kernel/chr_drv/chr_drv.a:
-	(cd kernel/chr_drv; make)
-
-kernel/kernel.o:
-	(cd kernel; make)
-
-mm/mm.o:
-	(cd mm; make)
+	@make -C kernel/math
 
 fs/fs.o:
-	(cd fs; make)
+	@make -C fs
+
+kernel/kernel.o:
+	@make -C kernel
+
+mm/mm.o:
+	@make -C mm
 
 lib/lib.a:
-	(cd lib; make)
+	@make -C lib
 
-boot/setup: boot/setup.s
-	$(AS86) -o boot/setup.o boot/setup.s
-	$(LD86) -s -o boot/setup boot/setup.o
+kernel/blk_drv/blk_drv.a:
+	@make -C kernel/blk_drv
 
-boot/setup.s:	boot/setup.S include/viz/config.h
-	$(CPP) -traditional boot/setup.S -o boot/setup.s
-
-boot/bootsect.s:	boot/bootsect.S include/viz/config.h
-	$(CPP) -traditional boot/bootsect.S -o boot/bootsect.s
-
-boot/bootsect:	boot/bootsect.s
-	$(AS86) -o boot/bootsect.o boot/bootsect.s
-	$(LD86) -s -o boot/bootsect boot/bootsect.o
+kernel/chr_drv/chr_drv.a:
+	@make -C kernel/chr_drv
 
 clean:
-	rm -f Image System.map tmp_make core boot/bootsect boot/setup \
-		boot/bootsect.s boot/setup.s
-	rm -f init/*.o tools/system tools/build boot/*.o
-	(cd mm;make clean)
-	(cd fs;make clean)
-	(cd kernel;make clean)
-	(cd lib;make clean)
+	@rm -f Kernel_Image System.map System_s.map system.S tmp_make core boot/bootsect boot/setup
+	@rm -f init/*.o tools/system boot/*.o typescript* info bochsout.txt
+	@for i in mm fs kernel lib boot; do make clean -C $$i; done
 
-backup: clean
-	(cd .. ; tar cf - viz | compress - > backup.Z)
-	sync
+debug:
+	@qemu-system-i386 -m 32M -boot a -fda Image -fdb rootimage-0.12 -hda rootimage-0.12-hd \
+	-serial pty -S -gdb tcp::1234
+
+start:
+	@qemu-system-i386 -m 32M -boot a -fda Image -fdb rootimage-0.12 -hda rootimage-0.12-hd
 
 dep:
-	sed '/\#\#\# Dependencies/q' < Makefile > tmp_make
-	(for i in init/*.c;do echo -n "init/";$(CPP) -M $$i;done) >> tmp_make
-	cp tmp_make Makefile
-	(cd fs; make dep)
-	(cd kernel; make dep)
-	(cd mm; make dep)
+	@sed '/\#\#\# Dependencies/q' < Makefile > tmp_make
+	@(for i in init/*.c;do echo -n "init/";$(CPP) -M $$i;done) >> tmp_make
+	@cp tmp_make Makefile
+	@for i in fs kernel mm lib; do make dep -C $$i; done
 
 ### Dependencies:
-init/main.o : init/main.c include/unistd.h include/sys/stat.h \
-  include/sys/types.h include/sys/time.h include/time.h include/sys/times.h \
-  include/sys/utsname.h include/sys/param.h include/sys/resource.h \
-  include/utime.h include/viz/tty.h include/termios.h include/viz/sched.h \
-  include/viz/head.h include/viz/fs.h include/viz/mm.h \
-  include/viz/kernel.h include/signal.h include/asm/system.h \
-  include/asm/io.h include/stddef.h include/stdarg.h include/fcntl.h \
-  include/string.h 
+init/main.o: init/main.c include/unistd.h include/sys/stat.h \
+ include/sys/types.h include/sys/time.h include/time.h \
+ include/sys/times.h include/sys/utsname.h include/sys/param.h \
+ include/sys/resource.h include/utime.h include/viz/tty.h \
+ include/termios.h include/viz/sched.h include/viz/head.h \
+ include/viz/fs.h include/viz/mm.h include/viz/kernel.h \
+ include/signal.h include/asm/system.h include/asm/io.h include/stddef.h \
+ include/stdarg.h include/fcntl.h include/string.h

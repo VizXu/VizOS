@@ -99,13 +99,13 @@ _system_call:
 	call _sys_call_table(,%eax,4)
 	pushl %eax
 2:
-	movl _current,%eax
+	movl current,%eax
 	cmpl $0,state(%eax)		# state
 	jne reschedule
 	cmpl $0,counter(%eax)		# counter
 	je reschedule
 ret_from_sys_call:
-	movl _current,%eax
+	movl current,%eax
 	cmpl _task,%eax			# task[0] cannot have signals
 	je 3f
 	cmpw $0x0f,CS(%esp)		# was old code segment supervisor ?

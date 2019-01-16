@@ -221,12 +221,12 @@ __asm__("str %%ax\n\t" \
  */
 #define switch_to(n) {\
 struct {long a,b;} __tmp; \
-__asm__("cmpl %%ecx,current\n\t" \
+__asm__("cmpl %%ecx,_current\n\t" \
 	"je 1f\n\t" \
 	"movw %%dx,%1\n\t" \
-	"xchgl %%ecx,current\n\t" \
+	"xchgl %%ecx,_current\n\t" \
 	"ljmp %0\n\t" \
-	"cmpl %%ecx,last_task_used_math\n\t" \
+	"cmpl %%ecx,_last_task_used_math\n\t" \
 	"jne 1f\n\t" \
 	"clts\n" \
 	"1:" \
@@ -235,9 +235,9 @@ __asm__("cmpl %%ecx,current\n\t" \
 }
 
 #define PAGE_ALIGN(n) (((n)+0xfff)&0xfffff000)
-
+/*
 #define _set_base(addr,base) \
-__asm__("movw %%dx,%0\n\t" \
+__asm__ __volatile__ ("movw %%dx,%0\n\t" \
 	"rorl $16,%%edx\n\t" \
 	"movb %%dl,%1\n\t" \
 	"movb %%dh,%2" \
@@ -246,6 +246,19 @@ __asm__("movw %%dx,%0\n\t" \
 	  "m" (*((addr)+7)), \
 	  "d" (base) \
 	:)
+*/
+#define _set_base(addr, base) do { unsigned long __pr; \
+__asm__ __volatile__ (\
+		"movw %%dx, %1\n\t"  			\
+		"rorl $16, %%edx\n\t"  			\
+		"movb %%dl, %2\n\t"  			\
+		"movb %%dh, %3\n\t"  			\
+		:"=&d"(__pr) \
+		:"m"(*((addr) + 2)), \
+		"m"(*((addr) + 4)), \
+		"m"(*((addr) + 7)), \
+		"0"(base) \
+		); } while(0)
 
 #define _set_limit(addr,limit) \
 __asm__("movw %%dx,%0\n\t" \
