@@ -11,14 +11,14 @@
  * the fpu must be properly saved/resored. This hasn't been tested.
  */
 
-.globl _divide_error,_debug,_nmi,_int3,_overflow,_bounds,_invalid_op
+.globl divide_error,_debug,_nmi,_int3,_overflow,_bounds,_invalid_op
 .globl _double_fault,_coprocessor_segment_overrun
 .globl _invalid_TSS,_segment_not_present,_stack_segment
 .globl _general_protection,_coprocessor_error,_irq13,_reserved
 .globl _alignment_check
 
-_divide_error:
-	pushl $_do_divide_error
+divide_error:
+	pushl $do_divide_error
 no_error_code:
 	xchgl %eax,(%esp)
 	pushl %ebx
