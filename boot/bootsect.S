@@ -1,13 +1,6 @@
-!
 ! SYS_SIZE is the number of clicks (16 bytes) to be loaded.
 ! 0x3000 is 0x30000 bytes = 196kB, more than enough for current
-! versions of linux
-! 
-! 
-! 
-! 
-!
-! 
+! versions
 ! 
 ! DEF_INITSEG	0x9000							
 ! DEF_SYSSEG	0x1000							
@@ -16,9 +9,6 @@
 !
 #include <linux/config.h>
 SYSSIZE = DEF_SYSSIZE             				
-!
-!	bootsect.s		(C) 1991 Linus Torvalds
-!	modified by Drew Eckhardt
 !
 ! bootsect.s is loaded at 0x7c00 by the bios-startup routines, and moves
 ! iself out of the way to address 0x90000, and jumps there.
@@ -36,13 +26,6 @@ SYSSIZE = DEF_SYSSIZE
 ! loads pretty fast by getting whole sectors at a time whenever possible.
 !
 !	bootsect.s		
-!	
-!
-! 
-! 
-!
-! 
-! 
 !
 .globl begtext, begdata, begbss, endtext, enddata, endbss
 .text
